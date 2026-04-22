@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- ✏️ CHANGE THIS: Update the project title -->
+  <title>Sources · My Data Capstone Project</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ========== COLORS — keep the same across all 4 pages ========== */
+    :root {
+      --accent: #2563eb;
+      --accent-light: #eff6ff;
+      --text: #1e293b;
+      --muted: #64748b;
+      --bg: #f8fafc;
+      --card: #ffffff;
+      --border: #e2e8f0;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    /* ===== NAVIGATION ===== */
+    nav {
+      background: var(--card);
+      border-bottom: 1px solid var(--border);
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .nav-brand {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.1rem;
+      color: var(--text);
+      text-decoration: none;
+      padding: 1rem 0;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 0.9rem;
+      font-weight: 500;
+      margin-left: 2rem;
+      padding: 0.25rem 0;
+      border-bottom: 2px solid transparent;
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    .nav-links a.active,
+    .nav-links a:hover {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+    }
+
+    /* ===== PAGE HEADER ===== */
+    .page-header {
+      background: var(--card);
+      border-bottom: 1px solid var(--border);
+      padding: 3rem 2rem 2.5rem;
+      text-align: center;
+    }
+
+    .page-header h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .page-header p {
+      color: var(--muted);
+      font-size: 1rem;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    /* ===== MAIN CONTENT ===== */
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 3rem 2rem;
+    }
+
+    /* ===== SECTION HEADING ===== */
+    .section-heading {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--accent-light);
+    }
+
+    /* ===== SOURCE CARD ===== */
+    .source-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 1rem;
+      display: flex;
+      gap: 1.25rem;
+      align-items: flex-start;
+    }
+
+    /* Colored icon/badge on the left */
+    .source-icon {
+      min-width: 42px;
+      height: 42px;
+      border-radius: 8px;
+      background: var(--accent-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+    }
+
+    .source-content { flex: 1; }
+
+    .source-type {
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+      margin-bottom: 0.2rem;
+    }
+
+    .source-content h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+
+    .source-content p {
+      font-size: 0.88rem;
+      color: var(--muted);
+      margin-bottom: 0.5rem;
+    }
+
+    .source-content a {
+      font-size: 0.85rem;
+      color: var(--accent);
+      text-decoration: none;
+      word-break: break-all;
+    }
+
+    .source-content a:hover { text-decoration: underline; }
+
+    /* ===== TOOLS SECTION ===== */
+    .tools-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .tool-chip {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.9rem 1.1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .tool-chip span:first-child { font-size: 1.25rem; }
+
+    .tool-name { font-size: 0.9rem; font-weight: 500; }
+    .tool-use  { font-size: 0.78rem; color: var(--muted); }
+
+    /* ===== FOOTER ===== */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.85rem;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== NAVIGATION ===== -->
+  <nav>
+    <!-- ✏️ CHANGE: Short project name -->
+    <a class="nav-brand" href="index.html">Capstone Project</a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="graphs.html">Graphs</a>
+      <a href="sources.html" class="active">Sources</a>  <!-- active = current page -->
+      <a href="about.html">About</a>
+    </div>
+  </nav>
+
+  <!-- ===== PAGE HEADER ===== -->
+  <div class="page-header">
+    <h1>Sources & References</h1>
+    <!-- ✏️ CHANGE: Describe where your data came from -->
+    <p>Data sources, research references, and tools used in this analysis.</p>
+  </div>
+
+  <div class="container">
+
+    <!-- ─── DATASETS ─── -->
+    <h2 class="section-heading">📊 Datasets</h2>
+
+    <!-- ✏️ CHANGE: Replace each source card with your actual data sources -->
+
+    <div class="source-card">
+      <div class="source-icon">📁</div>
+      <div class="source-content">
+        <div class="source-type">Primary Dataset</div>
+        <!-- ✏️ CHANGE: Name of the dataset -->
+        <h3>Student Screen Time & GPA Survey (2024)</h3>
+        <!-- ✏️ CHANGE: Where it came from, who collected it, how many rows, etc. -->
+        <p>
+          Survey data collected from 500 high school students across 3 schools in
+          New Jersey. Includes self-reported daily phone screen time, GPA,
+          grade level, and primary phone usage type. Collected October 2024.
+        </p>
+        <!-- ✏️ CHANGE: Link to the dataset, or write "Original data collected by [your name]" -->
+        <a href="https://www.kaggle.com/datasets/your-dataset-link" target="_blank">
+          View on Kaggle →
+        </a>
+      </div>
+    </div>
+
+    <div class="source-card">
+      <div class="source-icon">📁</div>
+      <div class="source-content">
+        <div class="source-type">Secondary Dataset</div>
+        <!-- ✏️ CHANGE: Second dataset if you have one, or delete this card -->
+        <h3>National Student Survey — NCES 2023</h3>
+        <p>
+          Used for comparison against national GPA averages by grade level.
+          National Center for Education Statistics, U.S. Department of Education.
+        </p>
+        <a href="https://nces.ed.gov" target="_blank">nces.ed.gov →</a>
+      </div>
+    </div>
+
+    <!-- ─── RESEARCH / ARTICLES ─── -->
+    <h2 class="section-heading" style="margin-top: 2.5rem;">📰 Research & Articles</h2>
+
+    <!-- ✏️ CHANGE: Add any articles, books, or papers you referenced -->
+
+    <div class="source-card">
+      <div class="source-icon">📄</div>
+      <div class="source-content">
+        <div class="source-type">Research Paper</div>
+        <!-- ✏️ CHANGE: Title of the article/paper -->
+        <h3>The Association Between Adolescent Well-Being and Digital Technology Use</h3>
+        <!-- ✏️ CHANGE: Author, publication, year -->
+        <p>Orben, A. & Przybylski, A.K. (2019). Nature Human Behaviour, 3, 173–182.</p>
+        <a href="https://www.nature.com/articles/s41562-018-0506-1" target="_blank">
+          Read paper →
+        </a>
+      </div>
+    </div>
+
+    <div class="source-card">
+      <div class="source-icon">🌐</div>
+      <div class="source-content">
+        <div class="source-type">Article</div>
+        <!-- ✏️ CHANGE: Another source you used -->
+        <h3>How Smartphones Are Affecting Student Performance</h3>
+        <p>Pew Research Center, 2023. Surveying parent and teen attitudes on phone use in schools.</p>
+        <a href="https://www.pewresearch.org" target="_blank">pewresearch.org →</a>
+      </div>
+    </div>
+
+    <!-- ─── TOOLS USED ─── -->
+    <h2 class="section-heading" style="margin-top: 2.5rem;">🛠️ Tools Used</h2>
+    <p style="color: var(--muted); font-size: 0.92rem; margin-bottom: 1rem;">
+      Software and programming tools used to analyze data and create visualizations.
+    </p>
+
+    <div class="tools-grid">
+      <!-- ✏️ CHANGE: Replace with the tools YOU used. Delete any you didn't use. -->
+      <div class="tool-chip">
+        <span>🐍</span>
+        <div>
+          <div class="tool-name">Python</div>
+          <div class="tool-use">Data analysis</div>
+        </div>
+      </div>
+      <div class="tool-chip">
+        <span>📓</span>
+        <div>
+          <div class="tool-name">Jupyter Notebook</div>
+          <div class="tool-use">Code & write-up</div>
+        </div>
+      </div>
+      <div class="tool-chip">
+        <span>📊</span>
+        <div>
+          <div class="tool-name">Matplotlib</div>
+          <div class="tool-use">Charts & graphs</div>
+        </div>
+      </div>
+      <div class="tool-chip">
+        <span>🐼</span>
+        <div>
+          <div class="tool-name">Pandas</div>
+          <div class="tool-use">Data cleaning</div>
+        </div>
+      </div>
+      <!-- ✏️ Add more tools if needed, e.g. Excel, R, Google Sheets, Tableau, etc. -->
+      <!--
+      <div class="tool-chip">
+        <span>📗</span>
+        <div>
+          <div class="tool-name">Excel</div>
+          <div class="tool-use">Spreadsheet work</div>
+        </div>
+      </div>
+      -->
+    </div>
+
+  </div><!-- end .container -->
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <!-- ✏️ CHANGE: Your name, class, school, year -->
+    Created by Jane Smith · AP Statistics · Lincoln High School · 2024
+  </footer>
+
+</body>
+</html>
